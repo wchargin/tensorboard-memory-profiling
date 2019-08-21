@@ -10,3 +10,28 @@ logfile run_20190821_012623Z
 
     Going to need to reduce the number of tags, I think, for this to be
     a useful testbed.
+
+commit 47e7dd5bf28f8e9384ecdcd2e33f9d8148f7fd99
+logfile run_20190821_025413Z
+
+    Ran overnight on the new logdir, which is only 312 MB on disk and
+    contains about 4.1 million scalars (31 MB at f64).
+
+    Chrome tab had crashed when I checked in this morning. Loading
+    completed by 752 seconds, and memory allocation stopped entirely
+    after 7997 seconds (probably when the Chrome tab crashed).
+
+    In the interim, there are continuous allocations due to the
+    requests, and there are some deallocations, but by far most minutes
+    are net-positive on memory usage. For instance, `list` allocations
+    are net-positive with periodic large allocations and periodic small
+    deallocations. Lists average about +100 KB/minute. Total allocation
+    appears to be about +120 KB/minute on average (but this is just on
+    the top 15 types for each minute, so there is some inherent error).
+
+    Users have reported memory leaks at rates of around 1 GB/hr, and
+    this appears to be leaking “only” around 7 MB an hour. Logdir size
+    and number of incoming requests (number of TensorBoard frontends
+    open) are probably relevant factors. Will increase the logdir size
+    and make the memory profiling output more definitive, then try
+    re-running.
