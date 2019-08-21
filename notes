@@ -1,0 +1,12 @@
+commit 460c9603cfabaa5c131be5537f6a1903ab714748
+logfile run_20190821_012623Z
+
+    Ran for 45 minutes. TensorBoard had loaded 30 of the 100 runs. My
+    system RAM was nearly exhausted; TensorBoard was using ~45 GiB.
+    Memory was steadily increasing by around 100 MB per minute, most of
+    which were `TensorProto`/`TensorEvent` objects. (This makes sense,
+    as the system was still loading.) We were also creating 2000 lock
+    objects per minute.
+
+    Going to need to reduce the number of tags, I think, for this to be
+    a useful testbed.

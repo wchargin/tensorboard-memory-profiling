@@ -11,8 +11,8 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 import tensorflow as tf
 
 
-RUNS = 100
-TAGS = 500
+RUNS = 255
+TAGS = 16
 STEPS = 1000
 
 
